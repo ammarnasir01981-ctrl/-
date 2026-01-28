@@ -909,6 +909,30 @@
                 </button>
             </div>
 
+            <!-- قسم المفتاح التجريبي المضافة -->
+            <div class="settings-group">
+                <h3><i class="fas fa-keyboard"></i> مفتاح تجريبي للاختبار</h3>
+                <p style="color: var(--dark); margin-bottom: 15px; line-height: 1.6;">
+                    يمكنك استخدام هذا المفتاح التجريبي للاختبار السريع. انسخه والصقه في حقل المفتاح أعلاه:
+                </p>
+                <div style="background: #f8fafc; padding: 15px; border-radius: var(--radius); border: 1px solid #e5e7eb; margin-bottom: 15px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <code style="font-family: monospace; font-size: 0.9rem; color: var(--dark); word-break: break-all; background: white; padding: 10px; border-radius: 6px; border: 1px solid #e5e7eb; flex: 1; margin-left: 10px;">
+                            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
+                        </code>
+                        <button onclick="copyTestApiKey()" style="background: var(--circular); color: white; border: none; padding: 10px 15px; border-radius: var(--radius); cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; gap: 8px;">
+                            <i class="fas fa-copy"></i> نسخ
+                        </button>
+                    </div>
+                    <button onclick="useTestApiKey()" style="background: var(--existential); color: white; border: none; padding: 12px 20px; border-radius: var(--radius); cursor: pointer; font-weight: 600; width: 100%; margin-top: 10px; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                        <i class="fas fa-bolt"></i> استخدام المفتاح التجريبي تلقائياً
+                    </button>
+                    <p style="color: var(--gray); font-size: 0.8rem; margin-top: 10px; text-align: center;">
+                        ⚠️ ملاحظة: هذا مفتاح تجريبي للاختبار فقط. للاستخدام الشخصي، يرجى استخدام مفتاحك الخاص.
+                    </p>
+                </div>
+            </div>
+
             <div class="settings-group">
                 <h3><i class="fas fa-robot"></i> اختيار نموذج OpenRouter</h3>
                 <p style="color: var(--dark); margin-bottom: 15px; line-height: 1.6;">
@@ -965,7 +989,8 @@
                     • OpenRouter هو بوابة موحدة للوصول إلى جميع نماذج الذكاء الاصطناعي الكبرى<br>
                     • تحصل على رصيد مجاني عند التسجيل<br>
                     • يمكنك تتبع الاستخدام من لوحة التحكم في الموقع<br>
-                    • نظام ICP يحول ردود OpenRouter إلى حوار وجودي عميق
+                    • نظام ICP يحول ردود OpenRouter إلى حوار وجودي عميق<br>
+                    • المفتاح التجريبي متاح للاختبار السريع فقط
                 </p>
             </div>
         </div>
@@ -1151,6 +1176,9 @@ const OpenRouterConfig = {
     temperature: 0.7,
     maxTokens: 2000
 };
+
+// المفتاح التجريبي للاختبار
+const TEST_API_KEY = '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';
 
 // ==========================================
 // 2. نظام بروتوكول الوعي المتكامل (ICP)
@@ -1470,6 +1498,35 @@ function saveOpenRouterApiKey() {
     setTimeout(() => testOpenRouterConnection(), 1000);
 }
 
+// ==========================================
+// 7. وظائف المفتاح التجريبي
+// ==========================================
+function copyTestApiKey() {
+    navigator.clipboard.writeText(TEST_API_KEY).then(() => {
+        showNotification('تم نسخ المفتاح التجريبي إلى الحافظة', 'success');
+    }).catch(err => {
+        console.error('Failed to copy API key: ', err);
+        showNotification('فشل نسخ المفتاح', 'error');
+    });
+}
+
+function useTestApiKey() {
+    // تعبئة حقل المفتاح بالمفتاح التجريبي
+    document.getElementById('api-key-input').value = TEST_API_KEY;
+    
+    // حفظ المفتاح تلقائياً
+    OpenRouterConfig.apiKey = TEST_API_KEY;
+    localStorage.setItem('icp_openrouter_key', TEST_API_KEY);
+    
+    showNotification('تم استخدام المفتاح التجريبي بنجاح', 'success');
+    updateConnectionStatus();
+    
+    // اختبار الاتصال تلقائياً بعد 1 ثانية
+    setTimeout(() => {
+        testOpenRouterConnection();
+    }, 1000);
+}
+
 async function testOpenRouterConnection() {
     if (!OpenRouterConfig.apiKey) {
         showNotification('يرجى إدخال مفتاح API أولاً', 'error');
@@ -1533,7 +1590,7 @@ function updateConnectionStatus() {
 }
 
 // ==========================================
-// 7. إدارة واجهة المستخدم
+// 8. إدارة واجهة المستخدم
 // ==========================================
 function setupICPEventListeners() {
     // أزرار التبويبات
@@ -1613,7 +1670,7 @@ function switchToTab(tabName) {
 }
 
 // ==========================================
-// 8. أدوات ICP
+// 9. أدوات ICP
 // ==========================================
 function clearICPConversation() {
     Swal.fire({
@@ -1716,7 +1773,7 @@ E(t) = ∫ αH(τ) · ∇_exist AI(τ) dτ
 }
 
 // ==========================================
-// 9. تصدير البحث
+// 10. تصدير البحث
 // ==========================================
 function exportICPResearch() {
     if (ICPFramework.conversationHistory.length === 0) {
@@ -1761,7 +1818,7 @@ function exportICPResearch() {
 }
 
 // ==========================================
-// 10. نظام الإشعارات
+// 11. نظام الإشعارات
 // ==========================================
 function showNotification(message, type = 'info') {
     const container = document.getElementById('notification-container');
@@ -1805,7 +1862,7 @@ function showNotification(message, type = 'info') {
 }
 
 // ==========================================
-// 11. تهيئة MathJax للمعادلات
+// 12. تهيئة MathJax للمعادلات
 // ==========================================
 if (window.MathJax) {
     MathJax.typesetPromise();
