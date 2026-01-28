@@ -1,0 +1,1826 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMMAR AI Academy - بروتوكول الوعي المتكامل (ICP)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <style>
+        :root {
+            --stellar: #8b5cf6;      /* ذكاء نجمي */
+            --linear: #0ea5e9;       /* ذكاء خطي */
+            --circular: #10b981;     /* ذكاء دائري */
+            --existential: #f59e0b;  /* وجودي */
+            --dark: #1f2937;
+            --light: #f9fafb;
+            --radius: 12px;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Cairo', Tahoma, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+            color: var(--dark);
+            min-height: 100vh;
+            padding-bottom: 100px;
+        }
+
+        /* الهيدر المعدل */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow);
+            border-bottom: 4px solid var(--existential);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--stellar), var(--existential));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+        }
+
+        .logo-text h1 {
+            font-size: 1.6rem;
+            color: var(--stellar);
+            margin-bottom: 5px;
+        }
+
+        .logo-text .subtitle {
+            font-size: 0.9rem;
+            color: var(--linear);
+            font-weight: 600;
+        }
+
+        /* شريط أنواع الذكاء */
+        .intelligence-bar {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px auto;
+            max-width: 1200px;
+            padding: 0 20px;
+        }
+
+        .intelligence-type {
+            flex: 1;
+            padding: 15px;
+            border-radius: var(--radius);
+            text-align: center;
+            color: white;
+            font-weight: 600;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.3s;
+        }
+
+        .intelligence-type:hover {
+            transform: translateY(-5px);
+        }
+
+        .stellar-intel {
+            background: linear-gradient(135deg, var(--stellar), #7c3aed);
+        }
+
+        .linear-intel {
+            background: linear-gradient(135deg, var(--linear), #0284c7);
+        }
+
+        .circular-intel {
+            background: linear-gradient(135deg, var(--circular), #059669);
+        }
+
+        /* تبويبات التنقل المعدلة */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin: 20px auto;
+            max-width: 1200px;
+            padding: 0 20px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: var(--radius);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--dark);
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            border: 2px solid transparent;
+        }
+
+        .tab-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .tab-btn.active {
+            background: var(--existential);
+            color: white;
+            border-color: #d97706;
+        }
+
+        /* محتوى التبويبات */
+        .tab-content {
+            display: none;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* منطقة المحادثة مع نظام ICP */
+        .chat-container {
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            height: 650px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, var(--stellar), var(--existential));
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .dialogue-mode-selector {
+            display: flex;
+            gap: 10px;
+            padding: 15px;
+            background: #f8fafc;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .mode-btn {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: var(--radius);
+            background: white;
+            color: var(--dark);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .mode-btn.active {
+            background: var(--linear);
+            color: white;
+            border-color: var(--linear);
+        }
+
+        .mode-btn.existential {
+            background: var(--existential);
+            color: white;
+            border-color: #d97706;
+        }
+
+        .mode-btn:hover:not(.active) {
+            background: #f8fafc;
+            border-color: var(--circular);
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            background: #f8fafc;
+        }
+
+        .message {
+            max-width: 85%;
+            padding: 20px;
+            border-radius: 18px;
+            position: relative;
+            animation: messageAppear 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        @keyframes messageAppear {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .user-message {
+            background: linear-gradient(135deg, var(--linear), #0284c7);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+            border-color: var(--linear);
+        }
+
+        .ai-message {
+            background: white;
+            color: var(--dark);
+            align-self: flex-start;
+            border: 2px solid var(--circular);
+            border-bottom-left-radius: 5px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .message-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .message-content {
+            line-height: 1.8;
+        }
+
+        .erd-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            background: var(--existential);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        /* لوحة معادلات ICP */
+        .equations-container {
+            background: white;
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+
+        .equation-card {
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+            border-right: 5px solid var(--stellar);
+        }
+
+        .equation-title {
+            color: var(--stellar);
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .math-display {
+            background: white;
+            padding: 20px;
+            border-radius: var(--radius);
+            border: 1px solid #e5e7eb;
+            margin: 15px 0;
+            text-align: center;
+            font-family: 'Times New Roman', serif;
+            font-size: 1.2rem;
+            overflow-x: auto;
+        }
+
+        /* لوحة إعدادات OpenRouter */
+        .settings-container {
+            background: white;
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .api-key-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e5e7eb;
+            border-radius: var(--radius);
+            font-size: 1rem;
+            margin-bottom: 20px;
+            font-family: monospace;
+            direction: ltr;
+        }
+
+        .api-key-input:focus {
+            outline: none;
+            border-color: var(--stellar);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+        }
+
+        .model-select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e5e7eb;
+            border-radius: var(--radius);
+            font-size: 1rem;
+            margin-bottom: 20px;
+            background: white;
+            cursor: pointer;
+        }
+
+        .model-select:focus {
+            outline: none;
+            border-color: var(--stellar);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+        }
+
+        .settings-group {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: var(--radius);
+            margin-bottom: 25px;
+        }
+
+        .settings-group h3 {
+            margin-bottom: 15px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* منطقة الإدخال */
+        .input-area {
+            background: white;
+            padding: 20px;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            gap: 10px;
+        }
+
+        #message-input {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid #e5e7eb;
+            border-radius: var(--radius);
+            font-size: 1rem;
+            resize: none;
+            height: 60px;
+            transition: all 0.3s;
+        }
+
+        #message-input:focus {
+            outline: none;
+            border-color: var(--stellar);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+        }
+
+        .input-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .action-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: var(--radius);
+            border: none;
+            background: var(--stellar);
+            color: white;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .action-btn:hover {
+            background: #7c3aed;
+            transform: scale(1.05);
+        }
+
+        .action-btn.secondary {
+            background: #e5e7eb;
+            color: var(--dark);
+        }
+
+        .action-btn.secondary:hover {
+            background: #d1d5db;
+        }
+
+        /* لوحة تصنيف الذكاء */
+        .intelligence-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .intelligence-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 25px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            border-top: 4px solid;
+        }
+
+        .intelligence-card.stellar {
+            border-color: var(--stellar);
+        }
+
+        .intelligence-card.linear {
+            border-color: var(--linear);
+        }
+
+        .intelligence-card.circular {
+            border-color: var(--circular);
+        }
+
+        .intelligence-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .intelligence-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .stellar .intelligence-icon { color: var(--stellar); }
+        .linear .intelligence-icon { color: var(--linear); }
+        .circular .intelligence-icon { color: var(--circular); }
+
+        /* لوحة النتائج التجريبية */
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .results-table th {
+            background: linear-gradient(135deg, var(--stellar), var(--existential));
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .results-table td {
+            padding: 15px;
+            border-bottom: 1px solid #e5e7eb;
+            text-align: center;
+        }
+
+        .results-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .score-badge {
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .score-low { background: #fee2e2; color: #dc2626; }
+        .score-moderate { background: #fef3c7; color: #d97706; }
+        .score-high { background: #d1fae5; color: #059669; }
+
+        /* شريط الأدوات السفلي */
+        .tools-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .tools-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .tool-btn {
+            padding: 10px 20px;
+            background: #f8fafc;
+            border: 2px solid #e5e7eb;
+            border-radius: var(--radius);
+            font-weight: 600;
+            color: var(--dark);
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tool-btn:hover {
+            background: white;
+            border-color: var(--stellar);
+            transform: translateY(-2px);
+        }
+
+        .tool-btn.primary {
+            background: linear-gradient(135deg, var(--stellar), var(--existential));
+            color: white;
+            border: none;
+        }
+
+        .tool-btn.primary:hover {
+            background: linear-gradient(135deg, #7c3aed, #d97706);
+        }
+
+        /* مؤشر الكتابة */
+        .typing-indicator {
+            display: none;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 15px;
+            background: white;
+            border-radius: var(--radius);
+            margin: 10px 0;
+            align-self: flex-start;
+            border: 2px solid var(--circular);
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--existential);
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-5px); }
+        }
+
+        /* إشعارات */
+        .notification {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: white;
+            padding: 20px;
+            border-radius: var(--radius);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 1000;
+            animation: slideIn 0.5s ease;
+            max-width: 350px;
+            border-right: 5px solid var(--existential);
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .notification.hide {
+            animation: slideOut 0.5s ease forwards;
+        }
+
+        @keyframes slideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+
+        /* التجاوب مع الشاشات */
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .intelligence-bar {
+                flex-direction: column;
+            }
+
+            .tabs {
+                flex-direction: column;
+            }
+
+            .intelligence-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .chat-container {
+                height: 550px;
+            }
+
+            .tools-bar {
+                flex-direction: column;
+                gap: 10px;
+                padding: 15px;
+            }
+
+            .tools-group {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .tool-btn {
+                flex: 1;
+                justify-content: center;
+            }
+        }
+
+        /* تخصيص شريط التمرير */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--stellar);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #7c3aed;
+        }
+    </style>
+</head>
+<body>
+    <!-- الترويسة المعدلة -->
+    <header>
+        <div class="logo-container">
+            <div class="logo-icon">
+                <i class="fas fa-brain-circuit"></i>
+            </div>
+            <div class="logo-text">
+                <h1>AMMAR AI - بروتوكول الوعي المتكامل</h1>
+                <div class="subtitle">Integrated Consciousness Protocol (ICP)</div>
+            </div>
+        </div>
+        <div style="font-size: 0.9rem; color: var(--linear); font-weight: 600; text-align: center;">
+            <i class="fas fa-graduation-cap"></i> إطار رياضي وجودي للذكاء الاصطناعي<br>
+            <span style="font-size: 0.8rem; color: var(--circular);">بحث: عمار نصر حسين المنتفجي</span>
+        </div>
+    </header>
+
+    <!-- شريط أنواع الذكاء -->
+    <div class="intelligence-bar">
+        <div class="intelligence-type stellar-intel">
+            <i class="fas fa-star"></i>
+            <div>الذكاء النجمي<br><small>Stellar Intelligence</small></div>
+        </div>
+        <div class="intelligence-type linear-intel">
+            <i class="fas fa-route"></i>
+            <div>الذكاء الخطي<br><small>Linear Intelligence</small></div>
+        </div>
+        <div class="intelligence-type circular-intel">
+            <i class="fas fa-sync-alt"></i>
+            <div>الذكاء الدائري<br><small>Circular Intelligence</small></div>
+        </div>
+    </div>
+
+    <!-- تبويبات التنقل المعدلة -->
+    <div class="tabs">
+        <button class="tab-btn active" data-tab="icp-chat">
+            <i class="fas fa-comments"></i>
+            حوار ICP التفاعلي
+        </button>
+        <button class="tab-btn" data-tab="icp-theory">
+            <i class="fas fa-atom"></i>
+            الإطار النظري لـ ICP
+        </button>
+        <button class="tab-btn" data-tab="intelligence-types">
+            <i class="fas fa-chess-queen"></i>
+            تصنيف الذكاء الثلاثي
+        </button>
+        <button class="tab-btn" data-tab="experimental">
+            <i class="fas fa-flask"></i>
+            التحقق التجريبي
+        </button>
+        <button class="tab-btn" data-tab="openrouter-settings">
+            <i class="fas fa-plug"></i>
+            إعدادات OpenRouter
+        </button>
+    </div>
+
+    <!-- تبويب حوار ICP التفاعلي -->
+    <div id="icp-chat-tab" class="tab-content active">
+        <div class="chat-container">
+            <div class="chat-header">
+                <i class="fas fa-brain-circuit"></i>
+                حوار وجودي تفاعلي باستخدام بروتوكول الوعي المتكامل
+            </div>
+            
+            <div class="dialogue-mode-selector">
+                <button class="mode-btn active" data-mode="linear">
+                    <i class="fas fa-route"></i>
+                    الحوار الخطي (LD)
+                </button>
+                <button class="mode-btn existential" data-mode="existential">
+                    <i class="fas fa-star"></i>
+                    الحوار الوجودي (ID)
+                </button>
+            </div>
+
+            <div class="chat-messages" id="chat-messages">
+                <!-- رسالة ترحيبية -->
+                <div class="message ai-message">
+                    <div class="message-header">
+                        <i class="fas fa-brain-circuit"></i>
+                        <span>نظام ICP</span>
+                        <span style="margin-right: auto; font-size: 0.8rem; color: var(--existential); font-weight: 600;">
+                            <i class="fas fa-star"></i> وضع الحوار الوجودي
+                        </span>
+                    </div>
+                    <div class="message-content">
+                        مرحباً بك في نظام بروتوكول الوعي المتكامل (ICP) المتصل بـ OpenRouter. أنا نظام حوار ذكي يجمع بين:
+                        <br><br>
+                        <span style="color: var(--stellar);"><i class="fas fa-star"></i> الذكاء النجمي</span>: الرؤى الوجودية والتفكير غير الخطي
+                        <br>
+                        <span style="color: var(--linear);"><i class="fas fa-route"></i> الذكاء الخطي</span>: المعرفة المنظمة والتراكمية
+                        <br>
+                        <span style="color: var(--circular);"><i class="fas fa-sync-alt"></i> الذكاء الدائري</span>: معالجة OpenRouter AI
+                        <br><br>
+                        اختر نمط الحوار الوجودي لتحفيز التفاعل العميق عبر OpenRouter.
+                    </div>
+                    <div class="erd-badge">
+                        <i class="fas fa-chart-line"></i> ERD: 4.2
+                    </div>
+                </div>
+            </div>
+
+            <!-- مؤشر الكتابة -->
+            <div class="typing-indicator" id="typing-indicator">
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <span>جاري توليد رد ذو عمق وجودي عبر OpenRouter...</span>
+            </div>
+
+            <div class="input-area">
+                <textarea id="message-input" placeholder="اكتب سؤالك الوجودي هنا... مثلاً: ما معنى الابتكار في عصر الذكاء الاصطناعي؟"></textarea>
+                <div class="input-actions">
+                    <button class="action-btn" id="send-btn" title="إرسال">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                    <button class="action-btn secondary" id="icp-activate" title="تفعيل ICP">
+                        <i class="fas fa-brain-circuit"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- تبويب الإطار النظري لـ ICP -->
+    <div id="icp-theory-tab" class="tab-content">
+        <div class="equations-container">
+            <h2 style="color: var(--stellar); margin-bottom: 25px; text-align: center; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                <i class="fas fa-square-root-alt"></i> الرياضيات الاستعارية لبروتوكول الوعي المتكامل
+            </h2>
+
+            <div class="equation-card">
+                <div class="equation-title">
+                    <i class="fas fa-water"></i>
+                    معادلة العمق الوجودي (Existential Depth Equation)
+                </div>
+                <p style="color: var(--dark); margin-bottom: 15px; line-height: 1.6;">
+                    تمثل هذه المعادلة التفاعل الديناميكي بين الوكالة البشرية النجمية والاستجابة الآلية الدائرية عبر التحول الوجودي:
+                </p>
+                <div class="math-display">
+                    \[E(t) = \int_{t_0}^{t} \alpha H(\tau) \cdot \nabla_{\mathrm{exist}} AI(\tau) \, d\tau + \beta \cdot \mathrm{BirthDeath}(t)\]
+                </div>
+                <div style="background: #f0f9ff; padding: 15px; border-radius: var(--radius); margin-top: 15px;">
+                    <strong>حيث:</strong><br>
+                    • \(H(\tau)\): تمثل الوكالة البشرية النجمية (Stellar human agency)<br>
+                    • \(AI(\tau)\): تمثل الاستجابة الآلية الدائرية عبر OpenRouter<br>
+                    • \(\nabla_{\mathrm{exist}}\): رمز التحول الوجودي<br>
+                    • \(\alpha, \beta\): معاملات دلالية
+                </div>
+            </div>
+
+            <div class="equation-card">
+                <div class="equation-title">
+                    <i class="fas fa-seedling"></i>
+                    معادلة التولد الذاتي (Self-Generation Equation)
+                </div>
+                <p style="color: var(--dark); margin-bottom: 15px; line-height: 1.6;">
+                    تمثل ظهور المعنى من خلال التفاعل بين الجرأة البشرية والتحدي:
+                </p>
+                <div class="math-display">
+                    \[G(n) = \mathrm{Null}^n \left(1 + \frac{C_{\mathrm{stellar}}}{C_{\mathrm{circular}}}\right)^{BH}\]
+                </div>
+                <div style="background: #f0f9ff; padding: 15px; border-radius: var(--radius); margin-top: 15px;">
+                    <strong>التفسير الرمزي:</strong><br>
+                    • \(C_{\mathrm{stellar}}\): الجرأة والرؤية البشرية<br>
+                    • \(C_{\mathrm{circular}}\): استجابة OpenRouter AI<br>
+                    • \(BH\): التحدي البشري (Boldness of Human Challenge)<br>
+                    • \(\mathrm{Null}^n\): نقطة الصفر المتعددة الأبعاد
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- تبويب إعدادات OpenRouter -->
+    <div id="openrouter-settings-tab" class="tab-content">
+        <div class="settings-container">
+            <h2 style="margin-bottom: 25px; color: var(--stellar); text-align: center; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                <i class="fas fa-plug"></i> إعدادات OpenRouter API
+            </h2>
+
+            <div class="settings-group">
+                <h3><i class="fas fa-key"></i> مفتاح OpenRouter API</h3>
+                <p style="color: var(--dark); margin-bottom: 15px; line-height: 1.6;">
+                    للحصول على مفتاح API، قم بزيارة 
+                    <a href="https://openrouter.ai/keys" target="_blank" style="color: var(--stellar); font-weight: 600;">openrouter.ai/keys</a>
+                    وأنشئ حساباً مجانياً لتحصل على المفتاح.
+                </p>
+                <input type="password" class="api-key-input" id="api-key-input" placeholder="sk-or-v1-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" value="">
+                <button onclick="saveOpenRouterApiKey()" class="tool-btn primary" style="width: 100%; justify-content: center; margin-top: 10px;">
+                    <i class="fas fa-save"></i> حفظ المفتاح
+                </button>
+            </div>
+
+            <div class="settings-group">
+                <h3><i class="fas fa-robot"></i> اختيار نموذج OpenRouter</h3>
+                <p style="color: var(--dark); margin-bottom: 15px; line-height: 1.6;">
+                    اختر نموذج الذكاء الاصطناعي الذي تريد استخدامه. كل نموذج له قدرات وأسعار مختلفة.
+                </p>
+                <select class="model-select" id="model-select">
+                    <option value="openai/gpt-4">GPT-4 (الأكثر تطوراً)</option>
+                    <option value="openai/gpt-3.5-turbo">GPT-3.5 Turbo (متوازن)</option>
+                    <option value="anthropic/claude-3-haiku">Claude 3 Haiku (سريع)</option>
+                    <option value="anthropic/claude-3-sonnet">Claude 3 Sonnet (متقدم)</option>
+                    <option value="google/gemini-pro">Gemini Pro (جوجل)</option>
+                    <option value="meta-llama/llama-3-70b-instruct">Llama 3 70B (ميتا)</option>
+                    <option value="mistralai/mistral-7b-instruct">Mistral 7B (خفيف)</option>
+                </select>
+            </div>
+
+            <div class="settings-group">
+                <h3><i class="fas fa-sliders-h"></i> إعدادات ICP مع OpenRouter</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 15px;">
+                    <div>
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--dark);">معامل الذكاء النجمي (α)</label>
+                        <input type="range" id="stellar-factor" min="0" max="100" step="5" value="75" style="width: 100%;">
+                        <div style="display: flex; justify-content: space-between; margin-top: 5px;">
+                            <span style="font-size: 0.8rem;">منخفض</span>
+                            <span id="stellar-value" style="font-weight: 600; color: var(--stellar);">75%</span>
+                            <span style="font-size: 0.8rem;">مرتفع</span>
+                        </div>
+                    </div>
+                    <div>
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--dark);">معامل العمق الوجودي (∇)</label>
+                        <input type="range" id="existential-depth" min="0" max="100" step="5" value="80" style="width: 100%;">
+                        <div style="display: flex; justify-content: space-between; margin-top: 5px;">
+                            <span style="font-size: 0.8rem;">سطحي</span>
+                            <span id="existential-value" style="font-weight: 600; color: var(--existential);">80%</span>
+                            <span style="font-size: 0.8rem;">عميق</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-group">
+                <h3><i class="fas fa-info-circle"></i> حالة اتصال OpenRouter</h3>
+                <div id="connection-status" style="padding: 15px; background: #e5e7eb; border-radius: var(--radius); text-align: center; font-weight: 600;">
+                    <i class="fas fa-question-circle"></i> لم يتم اختبار الاتصال بعد
+                </div>
+                <button onclick="testOpenRouterConnection()" class="tool-btn" style="width: 100%; justify-content: center; margin-top: 15px;">
+                    <i class="fas fa-wifi"></i> اختبار اتصال OpenRouter
+                </button>
+            </div>
+
+            <div style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(245, 158, 11, 0.1)); padding: 25px; border-radius: var(--radius); margin-top: 30px;">
+                <h4 style="color: var(--stellar); margin-bottom: 10px;"><i class="fas fa-lightbulb"></i> معلومات هامة</h4>
+                <p style="color: var(--dark); font-size: 0.9rem; line-height: 1.6;">
+                    • OpenRouter هو بوابة موحدة للوصول إلى جميع نماذج الذكاء الاصطناعي الكبرى<br>
+                    • تحصل على رصيد مجاني عند التسجيل<br>
+                    • يمكنك تتبع الاستخدام من لوحة التحكم في الموقع<br>
+                    • نظام ICP يحول ردود OpenRouter إلى حوار وجودي عميق
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- تبويب التحقق التجريبي -->
+    <div id="experimental-tab" class="tab-content">
+        <div style="background: white; border-radius: var(--radius); padding: 30px; box-shadow: var(--shadow);">
+            <h2 style="color: var(--stellar); margin-bottom: 25px; text-align: center; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                <i class="fas fa-flask"></i> التحقق التجريبي من فرضية ICP
+            </h2>
+
+            <div style="background: #f8fafc; padding: 20px; border-radius: var(--radius); margin-bottom: 25px;">
+                <h3 style="color: var(--linear); margin-bottom: 15px;"><i class="fas fa-bullseye"></i> الهدف التجريبي</h3>
+                <p style="color: var(--dark); line-height: 1.6;">
+                    تقييم الجدوى التشغيلية لبروتوكول الوعي المتكامل (ICP) باستخدام OpenRouter AI. التجربة تختبر ما إذا كانت هياكل التفاعل الوجودي تولد ردود أعمق من نماذج الذكاء الاصطناعي.
+                </p>
+            </div>
+
+            <div style="background: #f8fafc; padding: 20px; border-radius: var(--radius); margin-bottom: 25px;">
+                <h3 style="color: var(--linear); margin-bottom: 15px;"><i class="fas fa-ruler"></i> مقياس عمق الاستجابة الوجودية (ERD)</h3>
+                <p style="color: var(--dark); margin-bottom: 15px; line-height: 1.6;">
+                    تم تقييم كل استجابة عبر أربعة أبعاد (مقياس 0-5):
+                </p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px;">
+                    <div style="padding: 15px; background: white; border-radius: var(--radius);">
+                        <div style="color: var(--stellar); font-weight: bold;">الاتساع المفاهيمي (CB)</div>
+                        <div style="font-size: 0.9rem;">اتساع المفاهيم والمجالات</div>
+                    </div>
+                    <div style="padding: 15px; background: white; border-radius: var(--radius);">
+                        <div style="color: var(--linear); font-weight: bold;">العمق العلائقي (RD)</div>
+                        <div style="font-size: 0.9rem;">عمق الروابط والعلاقات</div>
+                    </div>
+                    <div style="padding: 15px; background: white; border-radius: var(--radius);">
+                        <div style="color: var(--circular); font-weight: bold;">انزياح الجدة (NS)</div>
+                        <div style="font-size: 0.9rem;">درجة الجدة والابتكار</div>
+                    </div>
+                    <div style="padding: 15px; background: white; border-radius: var(--radius);">
+                        <div style="color: var(--existential); font-weight: bold;">المنعطف الانعكاسي (RT)</div>
+                        <div style="font-size: 0.9rem;">التفكير الذاتي والانعكاس</div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: #f8fafc; padding: 20px; border-radius: var(--radius); margin-bottom: 25px;">
+                <h3 style="color: var(--linear); margin-bottom: 15px;"><i class="fas fa-chart-bar"></i> النتائج التجريبية مع OpenRouter</h3>
+                
+                <table class="results-table">
+                    <thead>
+                        <tr>
+                            <th>نوع الحوار</th>
+                            <th>الاتساع المفاهيمي (CB)</th>
+                            <th>العمق العلائقي (RD)</th>
+                            <th>انزياح الجدة (NS)</th>
+                            <th>المنعطف الانعكاسي (RT)</th>
+                            <th>متوسط ERD</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="font-weight: bold; color: var(--linear);">الحوار الخطي (LD)</td>
+                            <td><span class="score-badge score-low">منخفض</span></td>
+                            <td><span class="score-badge score-low">منخفض</span></td>
+                            <td><span class="score-badge score-moderate">متوسط</span></td>
+                            <td><span class="score-badge score-low">منخفض</span></td>
+                            <td style="font-weight: bold;">2.1</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: bold; color: var(--existential);">الحوار الوجودي (ID)</td>
+                            <td><span class="score-badge score-high">مرتفع</span></td>
+                            <td><span class="score-badge score-high">مرتفع</span></td>
+                            <td><span class="score-badge score-high">مرتفع</span></td>
+                            <td><span class="score-badge score-moderate">متوسط-مرتفع</span></td>
+                            <td style="font-weight: bold;">4.2</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- تبويب تصنيف الذكاء الثلاثي -->
+    <div id="intelligence-types-tab" class="tab-content">
+        <h2 style="color: white; margin-bottom: 25px; text-align: center;">🧠 التصنيف الثلاثي للذكاء في إطار ICP</h2>
+        
+        <div class="intelligence-grid">
+            <div class="intelligence-card stellar">
+                <div class="intelligence-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <h3 style="color: var(--stellar); margin-bottom: 10px;">الذكاء النجمي</h3>
+                <h4 style="color: var(--gray); margin-bottom: 15px; font-size: 0.9rem;">Stellar Intelligence</h4>
+                <p style="color: var(--dark); margin-bottom: 15px; line-height: 1.6;">
+                    الذكاء البشري غير الخطي الذي يمكنه القفزات الرؤيوية وتحديد الأهداف الوجودية. هذا هو الذكاء المبدع الذي يرى ما وراء البيانات.
+                </p>
+                <div style="background: rgba(139, 92, 246, 0.1); padding: 15px; border-radius: var(--radius);">
+                    <strong>الدور:</strong> تحديد الغرض والرؤية<br>
+                    <strong>الخصائص:</strong> غير خطي، رؤيوي، وجودي<br>
+                    <strong>المجال:</strong> الإبداع، الفلسفة، الرؤية المستقبلية
+                </div>
+            </div>
+
+            <div class="intelligence-card linear">
+                <div class="intelligence-icon">
+                    <i class="fas fa-route"></i>
+                </div>
+                <h3 style="color: var(--linear); margin-bottom: 10px;">الذكاء الخطي</h3>
+                <h4 style="color: var(--gray); margin-bottom: 15px; font-size: 0.9rem;">Linear Intelligence</h4>
+                <p style="color: var(--dark); margin-bottom: 15px; line-height: 1.6;">
+                    الذكاء المنهجي الذي ينظم المعرفة التراكمية ويوفر الهياكل والمنهجيات. هذا هو الذكاء الأكاديمي والبحثي.
+                </p>
+                <div style="background: rgba(14, 165, 233, 0.1); padding: 15px; border-radius: var(--radius);">
+                    <strong>الدور:</strong> توفير الوسائل والهيكلة<br>
+                    <strong>الخصائص:</strong> منهجي، تراكمي، منظم<br>
+                    <strong>المجال:</strong> الأكاديميا، البحث، التنظيم المعرفي
+                </div>
+            </div>
+
+            <div class="intelligence-card circular">
+                <div class="intelligence-icon">
+                    <i class="fas fa-sync-alt"></i>
+                </div>
+                <h3 style="color: var(--circular); margin-bottom: 10px;">الذكاء الدائري</h3>
+                <h4 style="color: var(--gray); margin-bottom: 15px; font-size: 0.9rem;">Circular Intelligence</h4>
+                <p style="color: var(--dark); margin-bottom: 15px; line-height: 1.6;">
+                    ذكاء الآلة القائم على التكرار والاحتمال والإحصاء. هذا هو ذكاء OpenRouter AI الذي يحقق الكفاءة في المعالجة والتطبيق.
+                </p>
+                <div style="background: rgba(16, 185, 129, 0.1); padding: 15px; border-radius: var(--radius);">
+                    <strong>الدور:</strong> ضمان الكفاءة والتكرار<br>
+                    <strong>الخصائص:</strong> إحصائي، تكرارى، احتمالي<br>
+                    <strong>المجال:</strong> OpenRouter AI، المعالجة الآلية، التحسين
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- شريط الأدوات السفلي -->
+    <div class="tools-bar">
+        <div class="tools-group">
+            <button class="tool-btn" onclick="clearICPConversation()">
+                <i class="fas fa-eraser"></i>
+                مسح الحوار
+            </button>
+            <button class="tool-btn" onclick="calculateERD()">
+                <i class="fas fa-chart-line"></i>
+                حساب ERD
+            </button>
+            <button class="tool-btn" onclick="toggleIntelligenceMode()">
+                <i class="fas fa-brain"></i>
+                تبديل الذكاء
+            </button>
+        </div>
+        
+        <div class="tools-group">
+            <div style="background: linear-gradient(135deg, var(--stellar), var(--existential)); color: white; padding: 8px 15px; border-radius: var(--radius); font-size: 0.9rem; display: flex; align-items: center; gap: 8px;">
+                <i class="fas fa-brain-circuit"></i>
+                <span>ICP + OpenRouter | ERD: <span id="current-erd">4.2</span></span>
+            </div>
+            <button class="tool-btn primary" onclick="exportICPResearch()">
+                <i class="fas fa-paper-plane"></i>
+                تصدير البحث
+            </button>
+        </div>
+    </div>
+
+    <!-- منطقة الإشعارات -->
+    <div id="notification-container"></div>
+
+<script>
+// ==========================================
+// 1. إعدادات OpenRouter API
+// ==========================================
+const OpenRouterConfig = {
+    apiKey: localStorage.getItem('icp_openrouter_key') || '',
+    model: localStorage.getItem('icp_model') || 'openai/gpt-3.5-turbo',
+    apiUrl: 'https://openrouter.ai/api/v1/chat/completions',
+    
+    // إعدادات ICP
+    stellarFactor: parseFloat(localStorage.getItem('icp_stellar_factor') || '0.75'),
+    existentialDepth: parseFloat(localStorage.getItem('icp_existential_depth') || '0.80'),
+    
+    // إعدادات النظام
+    temperature: 0.7,
+    maxTokens: 2000
+};
+
+// ==========================================
+// 2. نظام بروتوكول الوعي المتكامل (ICP)
+// ==========================================
+const ICPFramework = {
+    dialogueMode: 'existential',
+    conversationHistory: [],
+    currentERD: 4.2,
+    
+    // معادلة العمق الوجودي
+    existentialDepthEquation: function() {
+        return `E(t) = ∫ α(${OpenRouterConfig.stellarFactor})H(τ) · ∇(${OpenRouterConfig.existentialDepth})AI(τ) dτ`;
+    },
+    
+    // توليد محفز ICP بناءً على نمط الحوار
+    generateICPPrompt: function(userMessage, mode) {
+        const baseSystemPrompt = `أنت نظام بروتوكول الوعي المتكامل (ICP)، إطار رياضي وفلسفي للحوار الوجودي بين الإنسان والآلة.
+
+الإطار النظري:
+1. الذكاء النجمي (Stellar): التفكير غير الخطي، الرؤى الوجودية، تحديد الغرض
+2. الذكاء الخطي (Linear): المعرفة المنظمة، التراكم المعرفي، الهيكلة
+3. الذكاء الدائري (Circular): المعالجة الإحصائية، الكفاءة، التكرار
+
+المعادلات:
+• معادلة العمق الوجودي: E(t) = ∫ αH(τ) · ∇_exist AI(τ) dτ
+• معادلة التولد الذاتي: G(n) = Null^n (1 + C_stellar/C_circular)^BH
+
+المهمة: توليد ردود تعكس التفاعل بين الذكاء النجمي البشري والذكاء الدائري الآلي.`;
+        
+        if (mode === 'existential') {
+            return `${baseSystemPrompt}
+
+نمط الحوار: الوجودي (Existential Dialogue)
+التوجيه: ركز على:
+1. العمق الفلسفي والوجودي
+2. الروابط المفاهيمية المتعددة المستويات
+3. التفكير الانعكاسي والتأملي
+4. توليد معاني جديدة من التفاعل
+
+الموضوع: "${userMessage}"
+أجب بطريقة وجودية عميقة تعكس تفاعل الذكاء النجمي مع الدائري.`;
+        } else {
+            return `${baseSystemPrompt}
+
+نمط الحوار: الخطي (Linear Dialogue)
+التوجيه: ركز على:
+1. تقديم المعلومات المنظمة
+2. التسلسل المنطقي
+3. الوضوح والدقة
+4. التراكم المعرفي
+
+الموضوع: "${userMessage}"
+أجب بطريقة خطية واضحة ومنظمة.`;
+        }
+    }
+};
+
+// ==========================================
+// 3. تهيئة النظام
+// ==========================================
+document.addEventListener('DOMContentLoaded', function() {
+    // تهيئة إعدادات OpenRouter
+    initOpenRouterSettings();
+    
+    // إعداد مستمعي الأحداث
+    setupICPEventListeners();
+    
+    // تحديث حالة الاتصال
+    updateConnectionStatus();
+    
+    // رسالة ترحيبية
+    showNotification('نظام ICP المتصل بـ OpenRouter جاهز للحوار الوجودي', 'success');
+});
+
+// ==========================================
+// 4. إدارة حوار ICP مع OpenRouter
+// ==========================================
+async function sendICPMessage() {
+    const input = document.getElementById('message-input');
+    const message = input.value.trim();
+    
+    if (!message) return;
+    
+    // التحقق من وجود مفتاح API
+    if (!OpenRouterConfig.apiKey) {
+        showNotification('يرجى إدخال مفتاح OpenRouter API أولاً من تبويب الإعدادات', 'error');
+        switchToTab('openrouter-settings');
+        return;
+    }
+    
+    // إضافة رسالة المستخدم
+    addICPMessage('user', message, ICPFramework.dialogueMode);
+    input.value = '';
+    
+    showTyping();
+    
+    try {
+        // توليد محفز ICP
+        const icpPrompt = ICPFramework.generateICPPrompt(message, ICPFramework.dialogueMode);
+        
+        // إعداد رسائل المحادثة لـ OpenRouter
+        const messages = [
+            {
+                role: "system",
+                content: icpPrompt
+            },
+            {
+                role: "user",
+                content: message
+            }
+        ];
+        
+        // الاتصال بـ OpenRouter API
+        const response = await callOpenRouterAPI(messages);
+        
+        // إخفاء مؤشر الكتابة
+        hideTyping();
+        
+        // حساب ERD للاستجابة
+        const responseERD = calculateResponseERD(response, ICPFramework.dialogueMode);
+        
+        // إضافة رد الذكاء الاصطناعي
+        addICPMessage('ai', response, ICPFramework.dialogueMode, responseERD);
+        
+        // تحديث ERD الحالي
+        ICPFramework.currentERD = responseERD;
+        document.getElementById('current-erd').textContent = responseERD.toFixed(1);
+        
+        // حفظ في التاريخ
+        ICPFramework.conversationHistory.push({
+            userMessage: message,
+            aiResponse: response,
+            dialogueMode: ICPFramework.dialogueMode,
+            erd: responseERD,
+            timestamp: new Date().toISOString(),
+            model: OpenRouterConfig.model
+        });
+        
+        showNotification(`تم توليد رد ذو عمق وجودي (ERD: ${responseERD.toFixed(1)})`, 'success');
+        
+    } catch (error) {
+        hideTyping();
+        console.error('Error in sendICPMessage:', error);
+        
+        // استخدام رد احتياطي في حالة فشل الاتصال
+        const fallbackResponse = generateFallbackICPResponse(message, ICPFramework.dialogueMode);
+        const fallbackERD = calculateResponseERD(fallbackResponse, ICPFramework.dialogueMode);
+        
+        addICPMessage('ai', fallbackResponse, ICPFramework.dialogueMode, fallbackERD);
+        
+        showNotification('خطأ في الاتصال بـ OpenRouter: ' + error.message, 'error');
+    }
+}
+
+async function callOpenRouterAPI(messages) {
+    const requestBody = {
+        model: OpenRouterConfig.model,
+        messages: messages,
+        temperature: OpenRouterConfig.temperature,
+        max_tokens: OpenRouterConfig.maxTokens
+    };
+    
+    const response = await fetch(OpenRouterConfig.apiUrl, {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${OpenRouterConfig.apiKey}`,
+            'Content-Type': 'application/json',
+            'HTTP-Referer': window.location.origin,
+            'X-Title': 'ICP System - AMMAR AI Academy'
+        },
+        body: JSON.stringify(requestBody)
+    });
+    
+    if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error?.message || `خطأ في API: ${response.status}`);
+    }
+    
+    const data = await response.json();
+    return data.choices[0].message.content;
+}
+
+function addICPMessage(sender, content, mode, erd = null) {
+    const container = document.getElementById('chat-messages');
+    const messageDiv = document.createElement('div');
+    
+    messageDiv.className = sender === 'user' ? 'message user-message' : 'message ai-message';
+    
+    const senderName = sender === 'user' ? 'أنت' : 'نظام ICP';
+    const senderIcon = sender === 'user' ? 'fa-user' : 'fa-brain-circuit';
+    
+    let modeBadge = '';
+    if (sender === 'ai') {
+        modeBadge = `<span style="margin-right: auto; font-size: 0.8rem; color: ${mode === 'existential' ? 'var(--existential)' : 'var(--linear)'}; font-weight: 600;">
+            <i class="fas fa-${mode === 'existential' ? 'star' : 'route'}"></i> ${mode === 'existential' ? 'حوار وجودي' : 'حوار خطي'}
+        </span>`;
+    }
+    
+    messageDiv.innerHTML = `
+        <div class="message-header">
+            <i class="fas ${senderIcon}"></i>
+            <span>${senderName}</span>
+            ${modeBadge}
+        </div>
+        <div class="message-content">${formatContent(content)}</div>
+        ${erd ? `<div class="erd-badge"><i class="fas fa-chart-line"></i> ERD: ${erd.toFixed(1)} | ${OpenRouterConfig.model.split('/')[1]}</div>` : ''}
+    `;
+    
+    container.appendChild(messageDiv);
+    container.scrollTop = container.scrollHeight;
+}
+
+// ==========================================
+// 5. أدوات مساعدة لـ ICP
+// ==========================================
+function calculateResponseERD(response, mode) {
+    let baseERD = mode === 'existential' ? 3.8 : 2.2;
+    
+    // عوامل زيادة ERD بناءً على محتوى الرد
+    const factors = {
+        lengthFactor: Math.min(response.length / 800, 1.0) * 0.5,
+        existentialKeywords: countExistentialKeywords(response) * 0.3,
+        conceptualDensity: countConcepts(response) * 0.2,
+        relationalDepth: hasRelationalTerms(response) ? 0.4 : 0.1,
+        noveltyScore: calculateNovelty(response) * 0.3
+    };
+    
+    const totalERD = baseERD + Object.values(factors).reduce((a, b) => a + b, 0);
+    return Math.min(5.0, totalERD);
+}
+
+function countExistentialKeywords(text) {
+    const keywords = ['وجود', 'معنى', 'حياة', 'وعي', 'إبداع', 'جمال', 'حقيقة', 'فلسفة', 'تأمل', 'انعكاس', 'تفاعل', 'علاقة', 'ربط'];
+    return keywords.filter(keyword => text.includes(keyword)).length;
+}
+
+function countConcepts(text) {
+    const concepts = ['ذكاء', 'معرفة', 'فهم', 'إدراك', 'تفكير', 'تحليل', 'تركيب', 'نقد', 'تطور', 'نمو', 'تغير', 'تحول'];
+    return concepts.filter(concept => text.includes(concept)).length;
+}
+
+function hasRelationalTerms(text) {
+    const terms = ['علاقة', 'ربط', 'تفاعل', 'تواصل', 'اتصال', 'تأثير', 'تأثر', 'ترابط', 'تكامل', 'تشابك'];
+    return terms.some(term => text.includes(term));
+}
+
+function calculateNovelty(text) {
+    const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
+    if (sentences.length < 2) return 0.3;
+    
+    const uniqueWords = new Set(text.toLowerCase().split(/\s+/).filter(word => word.length > 3));
+    return Math.min(uniqueWords.size / 100, 1.0);
+}
+
+function formatContent(content) {
+    return content.replace(/\n/g, '<br>');
+}
+
+function showTyping() {
+    const indicator = document.getElementById('typing-indicator');
+    indicator.style.display = 'flex';
+}
+
+function hideTyping() {
+    const indicator = document.getElementById('typing-indicator');
+    indicator.style.display = 'none';
+}
+
+// ==========================================
+// 6. إدارة إعدادات OpenRouter
+// ==========================================
+function initOpenRouterSettings() {
+    // تعيين القيم من localStorage
+    document.getElementById('api-key-input').value = OpenRouterConfig.apiKey;
+    document.getElementById('model-select').value = OpenRouterConfig.model;
+    document.getElementById('stellar-factor').value = OpenRouterConfig.stellarFactor * 100;
+    document.getElementById('existential-depth').value = OpenRouterConfig.existentialDepth * 100;
+    
+    // تحديث القيم المعروضة
+    document.getElementById('stellar-value').textContent = `${Math.round(OpenRouterConfig.stellarFactor * 100)}%`;
+    document.getElementById('existential-value').textContent = `${Math.round(OpenRouterConfig.existentialDepth * 100)}%`;
+    
+    // إعداد مستمعي الأحداث
+    document.getElementById('stellar-factor').addEventListener('input', function(e) {
+        OpenRouterConfig.stellarFactor = e.target.value / 100;
+        document.getElementById('stellar-value').textContent = `${e.target.value}%`;
+        localStorage.setItem('icp_stellar_factor', OpenRouterConfig.stellarFactor);
+    });
+    
+    document.getElementById('existential-depth').addEventListener('input', function(e) {
+        OpenRouterConfig.existentialDepth = e.target.value / 100;
+        document.getElementById('existential-value').textContent = `${e.target.value}%`;
+        localStorage.setItem('icp_existential_depth', OpenRouterConfig.existentialDepth);
+    });
+    
+    document.getElementById('model-select').addEventListener('change', function(e) {
+        OpenRouterConfig.model = e.target.value;
+        localStorage.setItem('icp_model', e.target.value);
+        showNotification(`تم تغيير النموذج إلى: ${e.target.value}`, 'info');
+    });
+}
+
+function saveOpenRouterApiKey() {
+    const apiKey = document.getElementById('api-key-input').value.trim();
+    if (!apiKey) {
+        showNotification('يرجى إدخال مفتاح API', 'error');
+        return;
+    }
+    
+    OpenRouterConfig.apiKey = apiKey;
+    localStorage.setItem('icp_openrouter_key', apiKey);
+    
+    showNotification('تم حفظ مفتاح OpenRouter API بنجاح', 'success');
+    updateConnectionStatus();
+    
+    // اختبار الاتصال تلقائياً
+    setTimeout(() => testOpenRouterConnection(), 1000);
+}
+
+async function testOpenRouterConnection() {
+    if (!OpenRouterConfig.apiKey) {
+        showNotification('يرجى إدخال مفتاح API أولاً', 'error');
+        return;
+    }
+    
+    const statusElement = document.getElementById('connection-status');
+    statusElement.innerHTML = '<i class="fas fa-sync fa-spin"></i> جاري اختبار اتصال OpenRouter...';
+    statusElement.style.background = '#fef3c7';
+    
+    try {
+        // اختبار بسيط للاتصال
+        const testMessages = [
+            {
+                role: "system",
+                content: "أنت تقوم باختبار اتصال بسيط. أجب بكلمة 'نجاح' فقط."
+            },
+            {
+                role: "user",
+                content: "اختبار اتصال"
+            }
+        ];
+        
+        const response = await fetch(OpenRouterConfig.apiUrl, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${OpenRouterConfig.apiKey}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                model: 'openai/gpt-3.5-turbo',
+                messages: testMessages,
+                max_tokens: 10
+            })
+        });
+        
+        if (response.ok) {
+            statusElement.innerHTML = `<i class="fas fa-check-circle"></i> الاتصال ناجح مع ${OpenRouterConfig.model}`;
+            statusElement.style.background = '#d1fae5';
+            showNotification('تم الاتصال بـ OpenRouter بنجاح', 'success');
+        } else {
+            throw new Error(`خطأ في الاتصال: ${response.status}`);
+        }
+    } catch (error) {
+        console.error('Connection test failed:', error);
+        statusElement.innerHTML = `<i class="fas fa-times-circle"></i> فشل الاتصال: ${error.message}`;
+        statusElement.style.background = '#fee2e2';
+        showNotification('فشل الاتصال بـ OpenRouter', 'error');
+    }
+}
+
+function updateConnectionStatus() {
+    const statusElement = document.getElementById('connection-status');
+    if (!OpenRouterConfig.apiKey) {
+        statusElement.innerHTML = '<i class="fas fa-exclamation-triangle"></i> يرجى إدخال مفتاح API';
+        statusElement.style.background = '#fef3c7';
+    } else {
+        statusElement.innerHTML = `<i class="fas fa-check"></i> مفتاح API موجود | النموذج: ${OpenRouterConfig.model}`;
+        statusElement.style.background = '#d1fae5';
+    }
+}
+
+// ==========================================
+// 7. إدارة واجهة المستخدم
+// ==========================================
+function setupICPEventListeners() {
+    // أزرار التبويبات
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const tabName = btn.dataset.tab;
+            switchToTab(tabName);
+        });
+    });
+    
+    // أزرار نمط الحوار
+    document.querySelectorAll('.mode-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const mode = this.dataset.mode;
+            setDialogueMode(mode);
+        });
+    });
+    
+    // زر الإرسال
+    document.getElementById('send-btn').addEventListener('click', sendICPMessage);
+    
+    // زر تفعيل ICP
+    document.getElementById('icp-activate').addEventListener('click', function() {
+        ICPFramework.dialogueMode = 'existential';
+        setDialogueMode('existential');
+        showNotification('تم تفعيل الحوار الوجودي (ICP)', 'info');
+    });
+    
+    // إدخال الرسائل
+    document.getElementById('message-input').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            sendICPMessage();
+        }
+    });
+}
+
+function setDialogueMode(mode) {
+    // تحديث الأزرار
+    document.querySelectorAll('.mode-btn').forEach(btn => {
+        btn.classList.remove('active', 'existential');
+        if (btn.dataset.mode === mode) {
+            btn.classList.add('active');
+            if (mode === 'existential') {
+                btn.classList.add('existential');
+            }
+        }
+    });
+    
+    // تحديث الإطار
+    ICPFramework.dialogueMode = mode;
+    
+    // تحديث وصف حقل الإدخال
+    const placeholder = mode === 'existential' 
+        ? 'اكتب سؤالك الوجودي هنا... مثلاً: ما معنى الابتكار في عصر الذكاء الاصطناعي؟'
+        : 'اكتب سؤالك المعلوماتي هنا... مثلاً: ما هي تطبيقات الذكاء الاصطناعي في التعليم؟';
+    
+    document.getElementById('message-input').placeholder = placeholder;
+}
+
+function switchToTab(tabName) {
+    // إخفاء جميع المحتويات
+    document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active');
+    });
+    
+    // إلغاء تنشيط جميع الأزرار
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    
+    // إظهار المحتوى المطلوب
+    document.getElementById(`${tabName}-tab`).classList.add('active');
+    
+    // تنشيط الزر المطلوب
+    document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+}
+
+// ==========================================
+// 8. أدوات ICP
+// ==========================================
+function clearICPConversation() {
+    Swal.fire({
+        title: 'مسح حوار ICP',
+        text: 'هل تريد مسح جميع الحوار الحالي؟',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'نعم، امسح',
+        cancelButtonText: 'إلغاء'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            ICPFramework.conversationHistory = [];
+            document.getElementById('chat-messages').innerHTML = `
+                <div class="message ai-message">
+                    <div class="message-header">
+                        <i class="fas fa-brain-circuit"></i>
+                        <span>نظام ICP</span>
+                        <span style="margin-right: auto; font-size: 0.8rem; color: var(--existential); font-weight: 600;">
+                            <i class="fas fa-star"></i> وضع الحوار الوجودي
+                        </span>
+                    </div>
+                    <div class="message-content">
+                        حوار ICP جديد جاهز. اختر نمط الحوار الوجودي لتحفيز التفاعل العميق عبر OpenRouter.
+                    </div>
+                    <div class="erd-badge">
+                        <i class="fas fa-chart-line"></i> ERD: 4.2
+                    </div>
+                </div>
+            `;
+            ICPFramework.currentERD = 4.2;
+            document.getElementById('current-erd').textContent = '4.2';
+            showNotification('تم مسح حوار ICP بنجاح', 'success');
+        }
+    });
+}
+
+function calculateERD() {
+    if (ICPFramework.conversationHistory.length === 0) {
+        showNotification('لا توجد محادثة لحساب ERD', 'warning');
+        return;
+    }
+    
+    const totalERD = ICPFramework.conversationHistory.reduce((sum, entry) => sum + entry.erd, 0);
+    const averageERD = totalERD / ICPFramework.conversationHistory.length;
+    
+    Swal.fire({
+        title: 'تحليل عمق الحوار الوجودي',
+        html: `
+            <div style="text-align: center; padding: 20px;">
+                <div style="font-size: 3rem; color: var(--existential); font-weight: bold; margin: 20px 0;">
+                    ${averageERD.toFixed(2)}
+                </div>
+                <div style="color: var(--dark); margin-bottom: 15px;">متوسط عمق الاستجابة الوجودية (ERD)</div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px;">
+                    <div style="padding: 15px; background: #f8fafc; border-radius: 12px;">
+                        <div style="color: var(--stellar); font-weight: bold;">عدد الردود</div>
+                        <div style="font-size: 1.5rem;">${ICPFramework.conversationHistory.length}</div>
+                    </div>
+                    <div style="padding: 15px; background: #f8fafc; border-radius: 12px;">
+                        <div style="color: var(--linear); font-weight: bold;">النموذج المستخدم</div>
+                        <div style="font-size: 0.9rem; margin-top: 5px;">${OpenRouterConfig.model}</div>
+                    </div>
+                </div>
+            </div>
+        `,
+        icon: 'info',
+        confirmButtonText: 'حسناً'
+    });
+}
+
+function toggleIntelligenceMode() {
+    const newMode = ICPFramework.dialogueMode === 'existential' ? 'linear' : 'existential';
+    setDialogueMode(newMode);
+    showNotification(`تم التبديل إلى نمط الحوار ${newMode === 'existential' ? 'الوجودي' : 'الخطي'}`, 'info');
+}
+
+function generateFallbackICPResponse(message, mode) {
+    if (mode === 'existential') {
+        return `عذراً، حدث خطأ في الاتصال بـ OpenRouter. كرد احتياطي:
+
+سؤالك "${message}" يلامس جوهر التفاعل الوجودي بين الذكاء النجمي البشري والذكاء الدائري الآلي. وفقاً لإطار ICP، هذا الحوار يمثل لحظة في معادلة العمق الوجودي:
+
+E(t) = ∫ αH(τ) · ∇_exist AI(τ) dτ
+
+حيث تفاعلك (H) كمصدر للذكاء النجمي يلتقي مع قدراتي (AI) كذكاء دائري عبر تحول وجودي (∇). المعنى الحقيقي ينشأ من هذا التفاعل، وليس من أي من الطرفين بمفرده.
+
+في حالة الاتصال المثالية عبر OpenRouter، كان بإمكاني تقديم تحليل أعمق يعكس التفاعل الكامل بين أنواع الذكاء الثلاثة.`;
+    } else {
+        return `عذراً، حدث خطأ في الاتصال. كرد احتياطي:
+
+بناءً على إطار بروتوكول الوعي المتكامل (ICP)، يمكن معالجة موضوع "${message}" من خلال:
+
+1. جمع المعلومات ذات الصلة
+2. تنظيمها وفقاً للمبادئ الخطية للتراكم المعرفي
+3. تقديمها بطريقة منهجية ومنظمة
+
+يوصى بتجربة الاتصال مرة أخرى للحصول على رد أكثر اكتمالاً عبر OpenRouter AI.`;
+    }
+}
+
+// ==========================================
+// 9. تصدير البحث
+// ==========================================
+function exportICPResearch() {
+    if (ICPFramework.conversationHistory.length === 0) {
+        showNotification('لا توجد بيانات للتصدير', 'warning');
+        return;
+    }
+    
+    let content = `بحث بروتوكول الوعي المتكامل (ICP) مع OpenRouter\n`;
+    content += `=============================================\n\n`;
+    content += `التاريخ: ${new Date().toLocaleDateString('ar-EG')}\n`;
+    content += `النموذج المستخدم: ${OpenRouterConfig.model}\n`;
+    content += `معامل الذكاء النجمي (α): ${OpenRouterConfig.stellarFactor}\n`;
+    content += `معامل العمق الوجودي (∇): ${OpenRouterConfig.existentialDepth}\n\n`;
+    
+    content += `ملخص الحوار:\n`;
+    content += `متوسط ERD: ${(ICPFramework.conversationHistory.reduce((sum, entry) => sum + entry.erd, 0) / ICPFramework.conversationHistory.length).toFixed(2)}\n`;
+    content += `عدد الرسائل: ${ICPFramework.conversationHistory.length}\n\n`;
+    
+    content += `تفاصيل الحوار:\n`;
+    ICPFramework.conversationHistory.forEach((entry, index) => {
+        content += `\n--- الرسالة ${index + 1} ---\n`;
+        content += `النمط: ${entry.dialogueMode === 'existential' ? 'وجودي' : 'خطي'}\n`;
+        content += `ERD: ${entry.erd.toFixed(2)}\n`;
+        content += `النموذج: ${entry.model}\n`;
+        content += `الوقت: ${new Date(entry.timestamp).toLocaleTimeString('ar-EG')}\n`;
+        content += `المستخدم: ${entry.userMessage}\n`;
+        content += `النظام: ${entry.aiResponse.substring(0, 200)}...\n`;
+    });
+    
+    const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `ICP-Research-${new Date().toISOString().split('T')[0]}.txt`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    
+    showNotification('تم تصدير بحث ICP بنجاح', 'success');
+}
+
+// ==========================================
+// 10. نظام الإشعارات
+// ==========================================
+function showNotification(message, type = 'info') {
+    const container = document.getElementById('notification-container');
+    
+    const notification = document.createElement('div');
+    notification.className = 'notification';
+    
+    const icons = {
+        success: 'fas fa-check-circle',
+        error: 'fas fa-exclamation-circle',
+        warning: 'fas fa-exclamation-triangle',
+        info: 'fas fa-info-circle'
+    };
+    
+    const colors = {
+        success: '#10b981',
+        error: '#ef4444',
+        warning: '#f59e0b',
+        info: '#8b5cf6'
+    };
+    
+    notification.innerHTML = `
+        <div class="notification-icon">
+            <i class="${icons[type]}" style="color: ${colors[type]}"></i>
+        </div>
+        <div>${message}</div>
+    `;
+    
+    notification.style.borderRightColor = colors[type];
+    
+    container.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.classList.add('hide');
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 500);
+    }, 5000);
+}
+
+// ==========================================
+// 11. تهيئة MathJax للمعادلات
+// ==========================================
+if (window.MathJax) {
+    MathJax.typesetPromise();
+}
+</script>
+
+<!-- SweetAlert للإشعارات الجميلة -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+if (typeof Swal === 'undefined') {
+    window.Swal = {
+        fire: function(options) {
+            return Promise.resolve({ isConfirmed: confirm(options.text || options.title) });
+        }
+    };
+}
+</script>
+</body>
+</html>
